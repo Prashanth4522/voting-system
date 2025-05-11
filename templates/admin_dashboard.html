@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+</head>
+<body>
+    <h2>Welcome Admin</h2>
+
+    <h3>Add Candidate</h3>
+<form method="POST" action="{{ url_for('add_candidate') }}" enctype="multipart/form-data">
+    <label>Name:</label>
+    <input type="text" name="name" required>
+    <label>Party:</label>
+    <input type="text" name="party" required>
+    <label>Logo:</label>
+    <input type="file" name="logo" accept="image/*" required>
+    <input type="submit" value="Add">
+</form>
+
+
+{% for candidate in candidates %}
+<li>
+    {% if candidate['logo'] %}
+        <img src="{{ url_for('static', filename='logos/' ~ candidate['logo']) }}" alt="Logo">
+    {% endif %}
+    {{ candidate['name'] }} ({{ candidate['party'] }}) 
+    <a href="{{ url_for('delete_candidate', candidate_id=candidate['id']) }}">Delete</a>
+</li>
+{% endfor %}
+
+
+    <h3>Vote Counts</h3>
+    <ul>
+    {% for row in results %}
+        <li>{{ row['name'] }}: {{ row['vote_count'] }} votes</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</body>
+</html>

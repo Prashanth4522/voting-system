@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-content text-center">
+    <h1 class="display-3 gold-text mb-4">Secure <span class="text-white">Voting</span> System</h1>
+    <p class="lead mb-5">Revolutionizing democracy with blockchain and biometric security</p>
+    <div class="d-flex justify-content-center gap-4">
+      <a href="{{ url_for('login') }}" class="btn btn-gold btn-lg px-4 py-2">
+        <img src="/static/images/user-icon.png" width="24" class="me-2">
+        Voter Portal
+      </a>
+      <a href="{{ url_for('admin_login') }}" class="btn btn-gold btn-lg px-4 py-2">
+        <img src="/static/images/admin-icon.png" width="24" class="me-2">
+        Admin Dashboard
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center gold-text mb-5">Why Choose Our System</h2>
+    <div class="row g-4">
+      <!-- Feature 1 -->
+      <div class="col-md-4">
+        <div class="feature-card p-4 rounded text-center h-100">
+          <div class="feature-icon mb-3">🔒</div>
+          <h4 class="gold-text">Military-Grade Security</h4>
+          <p>Facial recognition with liveness detection prevents spoofing</p>
+        </div>
+      </div>
+      
+      <!-- Feature 2 -->
+      <div class="col-md-4">
+        <div class="feature-card p-4 rounded text-center h-100">
+          <div class="feature-icon mb-3">⚡</div>
+          <h4 class="gold-text">Instant Results</h4>
+          <p>Real-time vote tallying with transparent analytics</p>
+        </div>
+      </div>
+      
+      <!-- Feature 3 -->
+      <div class="col-md-4">
+        <div class="feature-card p-4 rounded text-center h-100">
+          <div class="feature-icon mb-3">📱</div>
+          <h4 class="gold-text">Mobile Friendly</h4>
+          <p>Vote securely from any device with camera access</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-5 bg-dark">
+  <div class="container">
+    <h2 class="text-center gold-text mb-5">How It Works</h2>
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4">
+        <img src="{{ url_for('static', filename='images/vote-banner.jpg') }}"alt="Voting Process" class="img-fluid rounded border border-gold">
+      </div>
+      <div class="col-lg-6">
+        <div class="process-step mb-4">
+          <h4 class="gold-text">1. Secure Registration</h4>
+          <p>Complete identity verification with facial biometrics</p>
+        </div>
+        <div class="process-step mb-4">
+          <h4 class="gold-text">2. Live Authentication</h4>
+          <p>Verify your identity with a quick face scan when voting</p>
+        </div>
+        <div class="process-step">
+          <h4 class="gold-text">3. Cast Your Vote</h4>
+          <p>Select candidates with encrypted ballot submission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

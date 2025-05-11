@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .vote-container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #FFD700;
+        }
+
+        .candidate {
+            margin-bottom: 15px;
+        }
+
+        .candidate input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: linear-gradient(45deg, #FFD700, #C5A100);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #E6C200, #B39000);
+        }
+    </style>
+</head>
+<body>
+    <div class="vote-container">
+        <h2>Cast Your Vote</h2>
+        <form method="POST">
+            {% for candidate in candidates %}
+                <div class="candidate">
+                    <img src="{{ url_for('static', filename='uploads/logos/' ~ candidate['logo']) }}" alt="Logo" width="50">
+                    <input type="radio" name="candidate" value="{{ candidate['id'] }}" required>
+                    {{ candidate['name'] }} – {{ candidate['party'] }}
+                </div>
+            {% endfor %}
+            <br>
+            <button type="submit">Submit Vote</button>
+        </form>
+    </div>
+</body>
+</html>

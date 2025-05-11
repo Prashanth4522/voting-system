@@ -1,0 +1,226 @@
+/* Global Styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Gold Gradient and Text */
+.gold-text {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title {
+font-family: 'Devious Road', Times, serif;
+}
+
+/* Hero Section */
+.hero {
+  background: url('../images/hero-bg.jpg') center/cover no-repeat;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.btn-gold {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  border: none;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(45deg, #FFA500, #FFD700);
+  color: #000;
+}
+
+.btn-outline-gold {
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  color: #000;
+}
+
+/* Feature Cards */
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Feature Icons */
+.feature-icon {
+  font-size: 40px;
+}
+
+/* Gold Border */
+.border-gold {
+  border: 2px solid #FFD700 !important;
+}
+
+/* Section Titles */
+h2 {
+  font-weight: 700;
+}
+
+/* Admin Login Card Styling */
+.card.bg-dark {
+  background-color: #111111 !important;
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.05);
+}
+
+.card-title {
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Form Controls */
+.form-control {
+  background-color: #1c1c1c;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.form-control:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+  background-color: #1c1c1c;
+  color: #fff;
+}
+
+/* Labels */
+.form-label {
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Submit Button */
+.btn-primary {
+  background: linear-gradient(45deg, #FFD700, #C5A100);
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #e6c200, #b89500);
+  color: #000;
+}
+
+/* Flash Messages */
+.alert {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  background-color: #661111;
+  color: #ffaaaa;
+  border: 1px solid #aa4444;
+}
+
+/* Admin Dashboard Styling */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  padding: 2rem;
+}
+
+h2, h3 {
+  color: var(--gold);
+}
+
+form {
+  background: #111;
+  padding: 1rem;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 1rem;
+  background-color: #1c1c1c;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+input[type="submit"] {
+  background: linear-gradient(45deg, #FFD700, #C5A100);
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #1a1a1a;
+  padding: 10px;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid var(--gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+a {
+  color: #FFD700;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+
+/* Responsive Padding */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 0;
+  }
+}

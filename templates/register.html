@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - Secure Voting System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body class="register-page">
+  <div class="container">
+    <h2 class="title">Register</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="voter_id">Voter ID:</label>
+    <input type="text" id="voter_id" name="voter_id" required><br><br>
+    
+    <label for="aadhaar">Aadhaar Number:</label>
+    <input type="text" id="aadhaar" name="aadhaar" required><br><br>
+    
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required><br><br>
+    <label>Upload Face Image:</label>
+        <input type="file" name="face_image" accept="image/*" capture="user" required>
+      </div>
+      <button type="submit" class="btn">Register</button>
+    </form>
+    <p class="login-link">
+      Already have an account?
+      <a href="{{ url_for('login') }}">Login</a>
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/face_verify.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Face Verification</h2>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Live Video Preview -->
+        <video id="video" width="640" height="480" autoplay></video>
+        <button id="snap" class="btn">Verify Face</button>
+        <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+
+        <p id="camera-status">Loading camera...</p>
+
+        <!-- 📌 Important: Form BEFORE script -->
+        <form id="capture-form" method="POST" action="/face_verify" enctype="multipart/form-data" style="display:none;">
+            <input type="file" id="live_image_input" name="live_image" accept="image/jpeg,image/png">
+        </form>
+
+        <!-- Script -->
+        <script>
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const videoElement = document.getElementById('video');
+                    videoElement.srcObject = stream;
+                    videoElement.play();
+                    document.getElementById('camera-status').innerText = "Camera ready.";
+                })
+                .catch(err => {
+                    console.error("Error accessing camera:", err);
+                    alert("Could not access the webcam. Please allow camera permissions.");
+                    document.getElementById('camera-status').innerText = "Camera access denied.";
+                });
+
+            document.getElementById('snap').addEventListener('click', async () => {
+                const video = document.getElementById('video');
+                const canvas = document.getElementById('canvas');
+                const ctx = canvas.getContext('2d');
+                const statusElement = document.getElementById('camera-status');
+                const snapButton = document.getElementById('snap');
+
+                // Disable button
+                snapButton.disabled = true;
+                statusElement.innerText = "Processing...";
+                statusElement.style.color = "blue";
+
+                try {
+                    // Capture frame
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                    // Convert to blob
+                    const blob = await new Promise((resolve, reject) => {
+                        canvas.toBlob(blob => {
+                            if (!blob) {
+                                reject(new Error('Canvas is empty'));
+                            } else {
+                                resolve(blob);
+                            }
+                        }, 'image/jpeg');
+                    });
+
+                    // Create a file
+                    const file = new File([blob], 'webcam_capture.jpg', { type: 'image/jpeg' });
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+
+                    const fileInput = document.getElementById('live_image_input');
+                    fileInput.files = dataTransfer.files;
+
+                    // Now submit the hidden form
+                    document.getElementById('capture-form').submit();
+
+                } catch (error) {
+                    console.error("Capture error:", error);
+                    statusElement.innerText = "Error: " + error.message;
+                    statusElement.style.color = "red";
+                    snapButton.disabled = false;
+                }
+            });
+        </script>
+
+    </div>
+</body>
+</html>

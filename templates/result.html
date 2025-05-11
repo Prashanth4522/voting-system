@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voting Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            padding: 40px;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+
+        tr:hover {
+            background-color: #383838;
+        }
+    </style>
+</head>
+<body>
+    <h2>Voting Results</h2>
+    <table>
+        <tr>
+            <th>Candidate</th>
+            <th>Party</th>
+            <th>Votes</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <td>{{ row['name'] }}</td>
+            <td>{{ row['party'] }}</td>
+            <td>{{ row['vote_count'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

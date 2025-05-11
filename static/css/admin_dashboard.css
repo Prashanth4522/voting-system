@@ -1,0 +1,65 @@
+/* Admin Dashboard Styling */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    padding: 2rem;
+}
+
+h2, h3 {
+    color: var(--gold);
+}
+
+form {
+    background: #111;
+    padding: 1rem;
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 1rem;
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+input[type="submit"] {
+    background: linear-gradient(45deg, #FFD700, #C5A100);
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #1a1a1a;
+    padding: 10px;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+a {
+    color: #FFD700;
+    text-decoration: none;
+    margin-left: 10px;
+}
