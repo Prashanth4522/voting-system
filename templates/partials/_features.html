@@ -1,31 +1,136 @@
 <section id="features" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">Key Features</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Facial Biometrics</h5>
-              <p class="card-text">Military-grade face recognition prevents voter fraud</p>
-            </div>
+  <div class="container">
+    <h2 class="text-center mb-5">Key Features</h2>
+    <div class="row">
+      <!-- 1. Auto-Logout for Inactivity -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Auto-Logout for Inactivity</h5>
+            <p class="card-text">Automatically logs users out after inactivity to prevent unauthorized access or voting misuse.</p>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Real-time Results</h5>
-              <p class="card-text">Live election analytics dashboard</p>
-            </div>
+      </div>
+
+      <!-- 2. Voter Participation Analytics -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Voter Analytics</h5>
+            <p class="card-text">Admin dashboard shows total registered voters and total votes cast in real-time.</p>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Blockchain Audit</h5>
-              <p class="card-text">Immutable vote recording (optional)</p>
-            </div>
+      </div>
+
+      <!-- 3. Face Dataset Training Interface -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Facial Dataset Trainer</h5>
+            <p class="card-text">Admin can add/update facial data and re-train the model for better recognition across demographics.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Cross-Platform Compatibility -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Cross-Platform Support</h5>
+            <p class="card-text">Responsive design supports browsers and mobile devices with secure webcam access.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Vote Encryption & Storage -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Encrypted Vote Storage</h5>
+            <p class="card-text">Votes are securely encrypted and optionally stored on blockchain for tamper-proof logging.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Secure Voting Interface -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">One-Time Secure Voting</h5>
+            <p class="card-text">Each user can vote only once after verifying their identity. Candidate details shown clearly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Face-Based Login and Registration -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Facial Login & Registration</h5>
+            <p class="card-text">Users register and log in using live facial capture and verification for high-security access.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Candidate Profile Display -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Candidate Profiles</h5>
+            <p class="card-text">Voters can view candidate names, party logos, and short bios before making a voting decision.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Fraud Detection Alerts -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Fraud Detection System</h5>
+            <p class="card-text">Alerts admin on multiple faces in frame, suspicious login attempts, or duplicate votes.</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<style>
+  #features {
+    background-color: #000; /* black background */
+    color: #FFD700; /* gold text */
+  }
+
+  #features h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 2rem;
+  }
+
+  #features .card {
+    background-color: #111; /* dark card */
+    border: 1px solid #FFD700;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #features .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  }
+
+  #features .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFD700;
+    margin-bottom: 0.75rem;
+  }
+
+  #features .card-text {
+    font-size: 1rem;
+    color: #ddd;
+    line-height: 1.6;
+  }
+</style>

@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 def init_db():
     conn = sqlite3.connect('voting_system.db')
     c = conn.cursor()
-    
+    #users table
     c.execute('''
     CREATE TABLE users_new (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

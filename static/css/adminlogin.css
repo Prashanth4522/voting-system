@@ -1,0 +1,58 @@
+/* Admin Login Card Styling */
+.card.bg-dark {
+    background-color: #111111 !important;
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.05);
+}
+
+.card-title {
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Form Controls */
+.form-control {
+    background-color: #1c1c1c;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.form-control:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+    background-color: #1c1c1c;
+    color: #fff;
+}
+
+/* Labels */
+.form-label {
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* Submit Button */
+.btn-primary {
+    background: linear-gradient(45deg, #FFD700, #C5A100);
+    border: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #e6c200, #b89500);
+    color: #000;
+}
+
+/* Flash Messages */
+.alert {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    background-color: #661111;
+    color: #ffaaaa;
+    border: 1px solid #aa4444;
+}

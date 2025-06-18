@@ -80,6 +80,19 @@ def features():
     """Dedicated features page"""
     return render_template('partials/_features.html')
 
+def is_duplicate_face(new_encoding):
+    conn = get_db_connection()
+    users = conn.execute("SELECT face_encoding FROM users").fetchall()
+    conn.close()
+
+    for user in users:
+        if user['face_encoding']:
+            existing_encoding = np.frombuffer(user['face_encoding'], dtype=np.float64)
+            match = face_recognition.compare_faces([existing_encoding], new_encoding, tolerance=0.45)[0]
+            if match:
+                return True
+    return False
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -111,12 +124,18 @@ def register():
 
             # Generate encoding
             face_encoding = face_recognition.face_encodings(rgb_img, face_locations)[0]
-            
-            # Save to database
+
+            # 🔒 Check for duplicate face before saving
+            if is_duplicate_face(face_encoding):
+                flash('This face is already registered with another account.', 'danger')
+                return render_template('register.html')
+
+            # Save image file
             filename = secure_filename(f"{uuid.uuid4().hex}.jpg")
             filepath = os.path.join(app.config['FACE_FOLDER'], filename)
             cv2.imwrite(filepath, cv2.cvtColor(rgb_img, cv2.COLOR_RGB2BGR))
-            
+
+            # Other validations
             from datetime import datetime
             voter_id = request.form['voter_id']
             aadhaar = request.form['aadhaar']
@@ -129,11 +148,11 @@ def register():
                 flash('You must be at least 18 years old to vote.', 'danger')
                 return render_template('register.html')
 
-
+            # Save user data
             conn = get_db_connection()
             conn.execute(
                 "INSERT INTO users (username, password, face_image, face_encoding, voter_id, aadhaar, dob) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (username, generate_password_hash(password), filename, face_encoding.tobytes(), voter_id, a)
+                (username, generate_password_hash(password), filename, face_encoding.tobytes(), voter_id, aadhaar, dob_str)
             )
             conn.commit()
             conn.close()
@@ -329,27 +348,29 @@ def add_candidate():
 
     name = request.form['name']
     party = request.form['party']
-    logo = request.files['logo']
+    logo_file = request.files['logo']
     
-    if logo:
-        filename = secure_filename(logo.filename)
-        upload_path = os.path.join(app.root_path, 'static/uploads/logos')
-        os.makedirs(upload_path, exist_ok=True)
-        logo_path = os.path.join(upload_path, filename)
-        logo.save(logo_path)
-    else:
-        filename = None
 
-    conn = get_db_connection()
-    try:
-        conn.execute('INSERT INTO candidates (name, party) VALUES (?, ?)', (name, party))
-        conn.commit()
-        flash('Candidate added successfully', 'success')
-    except Exception as e:
-        conn.rollback()
-        flash(f'Error adding candidate: {str(e)}', 'danger')
-    finally:
-        conn.close()
+    if logo_file and logo_file.filename != '':
+        UPLOAD_FOLDER = os.path.join('static', 'uploads')
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        filename = secure_filename(logo_file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        logo_file.save(filepath)
+
+        conn = get_db_connection()
+        try:
+            conn.execute('INSERT INTO candidates (name, party, logo) VALUES (?, ?, ?)',
+                         (name, party, filename))
+            conn.commit()
+            flash('Candidate added successfully', 'success')
+        except Exception as e:
+            conn.rollback()
+            flash(f'Error adding candidate: {str(e)}', 'danger')
+        finally:
+            conn.close()
+    else:
+        flash('Candidate logo image is required', 'danger')
 
     return redirect(url_for('admin_dashboard'))
 

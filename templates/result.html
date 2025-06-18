@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Voting Results</title>
+    <title>Thank You for Voting</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #111;
             color: #fff;
-            padding: 40px;
             margin: 0;
-        }
-
-        h2 {
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
+        }
+
+        .thank-you-container {
+            padding: 40px;
+            background-color: #1c1c1c;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        h1 {
             color: #FFD700;
-            margin-bottom: 30px;
+            font-size: 48px;
+            margin-bottom: 20px;
         }
 
-        table {
-            width: 80%;
-            margin: auto;
-            border-collapse: collapse;
-            background-color: #222;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        p {
+            font-size: 20px;
+            color: #ccc;
+            margin-bottom: 15px;
         }
 
-        th, td {
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #444;
-        }
-
-        th {
-            background-color: #333;
+        #countdown {
             color: #FFD700;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .redirect-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 6px;
+            color: #111;
+            cursor: pointer;
             font-weight: bold;
         }
 
-        tr:nth-child(even) {
-            background-color: #2a2a2a;
-        }
-
-        tr:hover {
-            background-color: #383838;
+        .redirect-btn:hover {
+            background-color: #e6c200;
         }
     </style>
+
+    <script>
+        let countdown = 5;
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = `Redirecting in ${countdown} seconds...`;
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    window.location.href = "/";  // Replace with your actual redirect URL (e.g., "/login")
+                }
+            }, 1000);
+        }
+
+        window.onload = startCountdown;
+    </script>
 </head>
 <body>
-    <h2>Voting Results</h2>
-    <table>
-        <tr>
-            <th>Candidate</th>
-            <th>Party</th>
-            <th>Votes</th>
-        </tr>
-        {% for row in results %}
-        <tr>
-            <td>{{ row['name'] }}</td>
-            <td>{{ row['party'] }}</td>
-            <td>{{ row['vote_count'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="thank-you-container">
+        <h1>Thank You for Voting!</h1>
+        <p>Your vote has been recorded successfully.</p>
+        <div id="countdown">Redirecting in 5 seconds...</div>
+        <button class="redirect-btn" onclick="window.location.href='/'">Go Now</button>
+    </div>
 </body>
 </html>

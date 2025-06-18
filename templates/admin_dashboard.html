@@ -22,13 +22,12 @@
 {% for candidate in candidates %}
 <li>
     {% if candidate['logo'] %}
-        <img src="{{ url_for('static', filename='logos/' ~ candidate['logo']) }}" alt="Logo">
+        <img src="{{ url_for('static', filename='uploads/' ~ candidate['logo']) }}" alt="Logo">
     {% endif %}
     {{ candidate['name'] }} ({{ candidate['party'] }}) 
     <a href="{{ url_for('delete_candidate', candidate_id=candidate['id']) }}">Delete</a>
 </li>
 {% endfor %}
-
 
     <h3>Vote Counts</h3>
     <ul>
